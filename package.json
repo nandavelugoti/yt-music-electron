@@ -1,0 +1,25 @@
+{
+  "name": "yt-music-electron",
+  "version": "1.0.0",
+  "description": "An electron app for Youtube Music.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "youtube",
+    "music",
+    "electron",
+    "app"
+  ],
+  "author": "Nanda Velugoti",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nandavelugoti/yt-music-electron.git"
+  },
+  "devDependencies": {
+    "electron": "^4.1.4"
+  }
+}
