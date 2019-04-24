@@ -10,7 +10,8 @@ electron.app.on('ready', () => {
         height: 720,
         minWidth: 800,
         minHeight: 600,
-        frame: false
+        frame: false,
+        icon: __dirname + '/logo.png'
     })
     win.on('closed', () => win = null)
     win.loadURL('https://music.youtube.com')
