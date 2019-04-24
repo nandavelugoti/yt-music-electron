@@ -2,13 +2,8 @@ let isDown = false
 
 window.addEventListener('mousedown', (event) => {
     event.preventDefault();
-    console.log('mousedown on ' + event.target.id)
-    isDown = true
-})
-
-window.addEventListener('mouseup', (event) => {
-    event.preventDefault();
-    isDown = false
+    console.log('mousedown on ' + event.target.classList)
+    isDown = event.target.classList.contains('ytmusic-nav-bar')
 })
 
 window.addEventListener('mousemove', function (event) {
@@ -17,6 +12,11 @@ window.addEventListener('mousemove', function (event) {
         window.moveBy(event.movementX, event.movementY)
     }
 }, true);
+
+window.addEventListener('mouseup', (event) => {
+    event.preventDefault();
+    isDown = false
+})
 
 document.getElementsByClassName('logo')[0].addEventListener('mouseenter', () => {
     console.log('mouseenter on logo')
