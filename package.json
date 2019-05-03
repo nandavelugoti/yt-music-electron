@@ -2,9 +2,11 @@
   "name": "yt-music-electron",
   "version": "1.0.0",
   "description": "An electron app for Youtube Music.",
-  "main": "./src/main.js",
+  "main": "./main.js",
   "scripts": {
     "start": "electron .",
+    "build": "electron-packager .",
+    "build-release": "electron-packager .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,6 +22,7 @@
     "url": "https://github.com/nandavelugoti/yt-music-electron.git"
   },
   "devDependencies": {
-    "electron": "^4.1.4"
+    "electron": "^4.1.4",
+    "electron-packager": "^13.1.1"
   }
 }
