@@ -1,11 +1,12 @@
 let isDown = false
 let logo = document.getElementsByClassName('logo')[0]
 let menu = document.createElement('div')
-menu.classList = 'style-scope ytmusic-app'
+// menu.classList = 'style-scope ytmusic-app'
 
 let constructMenu = function () {
 
     let itemRenderer = document.createElement('ytd-compact-link-renderer')
+    itemRenderer.classList = 'style-scope yt-multi-page-menu-section-renderer'
     itemRenderer.querySelector('#label').innerHTML = 'Exit'
 
     let menuItems = document.createElement('div')
@@ -17,34 +18,43 @@ let constructMenu = function () {
     ytdMultiPageMenuRenderer.classList = 'dropdown-content style-scope ytmusic-popup-container'
     ytdMultiPageMenuRenderer.tabIndex = 0
     ytdMultiPageMenuRenderer.menuStyle="multi-page-menu-style-type-account"
-    ytdMultiPageMenuRenderer.style='outline: none; box-sizing: border-box; max-width: 300px; max-height: 427px';
+    ytdMultiPageMenuRenderer.style='outline: none; box-sizing: border-box;';
     ytdMultiPageMenuRenderer.querySelector('#sections').appendChild(menuItems)
-
-    
 
     let ironDropDown = document.createElement('iron-dropdown')
     ironDropDown.style.zIndex = 103;
+    ironDropDown.style.position = 'fixed';
+    ironDropDown.style.display = 'block'
+    ironDropDown.ariaDisabled= 'false'
+    ironDropDown.horizontalAlign = 'auto'
+    ironDropDown.classList = 'style-scope ytmusic-popup-container'
     ironDropDown.querySelector('#contentWrapper').appendChild(ytdMultiPageMenuRenderer)
 
     let ytmusicPopupContainer = document.createElement('ytmusic-popup-container')
+    ytmusicPopupContainer.classList = 'style-scope ytmusic-app'
     ytmusicPopupContainer.appendChild(ironDropDown)
 
     menu.appendChild(ytmusicPopupContainer)
+
+    let logoRect = logo.getBoundingClientRect()
+    menu.style.position = 'absolute'
+    menu.style.left = `${logoRect.left}px`
+    menu.style.top = `${logoRect.top + logoRect.height + 10}px`
+    menu.style.height = 'auto'
+    menu.style.width = 'auto'
+    menu.addEventListener('mouseleave', hideMenu)
+    hideMenu()
+
+    document.body.appendChild(menu)
 }
 
 
 let showMenu = function () {
-    let logoRect = logo.getBoundingClientRect()
-    menu.style.position = 'absolute'
-    // menu.style.zIndex = '999'
-    menu.style.left = `${logoRect.left}px`
-    menu.style.top = `${logoRect.top + logoRect.height + 10}px`
-    menu.style.height = menu.style.width ='30%'
-    document.body.appendChild(menu)
+    menu.style.display = 'block'
 }
 
 let hideMenu = function () {
-    document.body.removeChild(menu)
+    menu.style.display = 'none'
 }
 
 let registerEventListeners = function () {
@@ -62,7 +72,7 @@ let registerEventListeners = function () {
         isDown = false
     })
     logo.addEventListener('mouseenter', showMenu)
-    logo.addEventListener('mouseleave', hideMenu)
+    
 }
 
 registerEventListeners()
